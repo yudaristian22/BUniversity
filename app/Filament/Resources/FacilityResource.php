@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\Tiny;
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\FacilityResource\Pages;
 use App\Filament\Resources\FacilityResource\RelationManagers;
 use App\Models\Facility;
@@ -23,10 +25,11 @@ class FacilityResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('content')
+                TinyEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('image')
+                Forms\Components\FileUpload::make('image')
+                    ->image()
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -36,6 +39,11 @@ class FacilityResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('content')
+                    ->html()
+                    ->wrap()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
