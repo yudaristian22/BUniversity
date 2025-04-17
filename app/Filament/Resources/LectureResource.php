@@ -42,7 +42,8 @@ class LectureResource extends Resource
                 Forms\Components\TextInput::make('topik')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image')
+                Forms\Components\FileUpload::make('image')
+                    ->image()
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -52,6 +53,7 @@ class LectureResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nidn')

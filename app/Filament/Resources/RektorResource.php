@@ -29,8 +29,9 @@ class RektorResource extends Resource
                 Forms\Components\TextInput::make('jabatan')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image')
+                Forms\Components\FileUpload::make('image')
                     ->required()
+                    ->image()
                     ->columnSpanFull(),
             ]);
     }
@@ -39,6 +40,7 @@ class RektorResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jabatan')

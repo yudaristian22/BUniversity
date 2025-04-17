@@ -13,7 +13,7 @@ class Announcement extends Model
         'title',
         'content',
         'slug',
-        'users_id',
+        'user_id',
         'created_at',
         'updated_at',
     ];

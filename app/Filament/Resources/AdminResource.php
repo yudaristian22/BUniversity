@@ -32,7 +32,8 @@ class AdminResource extends Resource
                 Forms\Components\TextInput::make('jabatan')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image')
+                Forms\Components\FileUpload::make('image')
+                    ->image()
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -42,6 +43,7 @@ class AdminResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nip')
