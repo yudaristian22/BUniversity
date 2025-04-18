@@ -44,6 +44,7 @@
     </div>
 </section>
 
+<!-- COOPERATION -->
 <div
     class="container relative z-10 py-5 mx-4 -mt-32 overflow-hidden bg-white shadow-2xl w-fit md:px-16 rounded-3xl sm:mx-auto">
     <h3 class="w-full mb-4 text-xl font-semibold text-center sm:text-2xl font-montserrat">
@@ -59,6 +60,7 @@
         @endif
     </div>
 </div>
+<!-- END COOPERATION -->
 
 <!-- END OF HERO SECTION -->
 
@@ -69,26 +71,35 @@
             <h3 class="text-xl font-bold text-primary-200 sm:text-2xl font-montserrat">
                 TENTANG KAMI
             </h3>
-            <p class="text-2xl font-semibold font-montserrat sm:text-4xl">
-                Membangun generasi
-                <span class="text-secondary-purple">unggul</span> dan
-                <span class="text-secondary-pink">berakhlak</span>
-            </p>
-            <p class="text-base font-semibold sm:text-lg text-xneutral-200 font-montserrat">
-                Universitas yang berfokus pada integritas, ilmu pengetahuan, dan
-                pengembangan karakter untuk membentuk pemimpin masa depan.
-            </p>
-            <a href="#"
-                class="px-6 py-[14px] font-montserrat text-neutral-0 bg-white border w-fit text-lg font-semibold border-primary-200 text-primary-200 rounded-full flex gap-[10px]"><span>Tentang
-                    kami</span>
-                <i class="bi bi-arrow-right"></i>
-            </a>
+            @if (empty($abouts->content) && empty($abouts->image))
+                <p class="text-lg font-semibold font-montserrat sm:text-xl text-xneutral-200"></p>
+            @else
+                <p class="text-2xl font-semibold font-montserrat sm:text-4xl">
+                    Membangun generasi
+                    <span class="text-secondary-purple">unggul</span> dan
+                    <span class="text-secondary-pink">berakhlak</span>
+                </p>
+                <p class="text-base font-semibold sm:text-lg text-xneutral-200 font-montserrat">
+                    {{ $abouts->content }}
+                </p>
+                <a href="{{ route('sejarah') }}"
+                    class="px-6 py-[14px] font-montserrat text-neutral-0 bg-white border w-fit text-lg font-semibold border-primary-200 text-primary-200 rounded-full flex gap-[10px]"><span>Tentang
+                        kami</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            @endif
         </div>
         <div class="relative">
             <div class="grid grid-cols-2 gap-6 w-fit">
-                <img src="/assets/images/about-1.png" alt="Illustration 1" />
-                <img src="/assets/images/about-2.png" alt="Illustration 2" />
-                <img class="col-span-2" src="/assets/images/about-3.png" alt="Illustration 3" />
+                @if (isset($abouts->image[0]))
+                    <img src="{{ asset('storage/' . $abouts->image[0]) }}" alt="Illustration" />
+                @endif
+                @if (isset($abouts->image[1]))
+                    <img src="{{ asset('storage/' . $abouts->image[1]) }}" alt="Illustration" />
+                @endif
+                @if (isset($abouts->image[2]))
+                    <img src="{{ asset('storage/' . $abouts->image[2]) }}" alt="Illustration" />
+                @endif
             </div>
             <img class="absolute -bottom-32 -left-36 -z-10" src="/assets/images/elipse-1.svg" alt="" />
             <img class="absolute -top-24 -right-16 -z-10" src="/assets/images/elipse-2.svg" alt="" />
@@ -121,41 +132,22 @@
     </div>
     <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
-            <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
-                <img src="/assets/images/berita.png" alt="Berita 1" />
-            </div>
-            <a href="berita.html"
-                class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                Alat Pemotong Adonan Kerupuk untuk UMKM J&R Dinoyo Malang
-            </a>
-            <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
-                20/08/24
-            </p>
-        </div>
-        <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-white">
-            <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
-                <img src="/assets/images/berita-1.png" alt="Berita 1" />
-            </div>
-            <a href="berita.html"
-                class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                Himpunan Informatika (HMTI) gelar kuliah praktisi
-            </a>
-            <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
-                08/08/24
-            </p>
-        </div>
-        <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-white">
-            <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
-                <img src="/assets/images/berita-2.png" alt="Berita 1" />
-            </div>
-            <a href="berita.html"
-                class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                Rapat Konsolidasi Pembentukan APSIMI (Asosiasi Program Studi
-                Informatika Medis Indonesia)
-            </a>
-            <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
-                20/07/24
-            </p>
+            @if ($news->isEmpty())
+                <p class="text-lg text-center text-xneutral-200 font-montserrat">No news available.</p>
+            @else
+                @foreach ($news as $newslist)
+                    <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
+                        <img src="{{ asset('storage/' . $newslist->image) }}" alt="{{ $newslist->title }}" />
+                    </div>
+                    <a href="{{ route('berita.show', $newslist->slug) }}"
+                        class="text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                        {{ $newslist->title }}
+                    </a>
+                    <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
+                        {{ \Carbon\Carbon::parse($newlist->created_at)->format('d/m/y') }}
+                    </p>
+                @endforeach
+            @endif
         </div>
     </div>
     <div class="absolute top-12 -left-24 -z-10">
@@ -175,50 +167,23 @@
         </p>
     </div>
     <div class="grid grid-cols-2 gap-12 text-center lg:grid-cols-4 mt-11">
-        <div class="flex flex-col items-center">
-            <div class="mb-6 overflow-hidden rounded-full w-fit">
-                <img src="/assets/images/orang-3.png" alt="Angga Setiawan" />
-            </div>
-            <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
-                Angga Setiawan
-            </p>
-            <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
-                Rektor
-            </p>
-        </div>
-        <div class="flex flex-col items-center">
-            <div class="mb-6 overflow-hidden rounded-full w-fit">
-                <img src="/assets/images/orang-2.png" alt="Galih Pratama" />
-            </div>
-            <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
-                Galih Pratama
-            </p>
-            <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
-                Wakil Rektor 1
-            </p>
-        </div>
-        <div class="flex flex-col items-center">
-            <div class="mb-6 overflow-hidden rounded-full w-fit">
-                <img src="/assets/images/orang-5.png" alt="Ahmad Hafidh Ayatullah" />
-            </div>
-            <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
-                Ahmad Hafidh Ayatullah
-            </p>
-            <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
-                Wakil Rektor 2
-            </p>
-        </div>
-        <div class="flex flex-col items-center">
-            <div class="mb-6 overflow-hidden rounded-full w-fit">
-                <img src="/assets/images/orang-4.png" alt="Della Reno Rinaldi" />
-            </div>
-            <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
-                Della Reno Rinaldi
-            </p>
-            <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
-                Wakil Rektor 3
-            </p>
-        </div>
+        @if ($rectors->isEmpty())
+            <p class="text-lg text-center text-xneutral-200 font-montserrat">No rector images available.</p>
+        @else
+            @foreach ($rectors as $rector)
+                <div class="flex flex-col items-center">
+                    <div class="mb-6 overflow-hidden rounded-full w-fit">
+                        <img src="{{ asset('storage/' . $rector->image) }}" alt="{{ $rector->nama }}" />
+                    </div>
+                    <p class="mb-[2px] text-sm sm:text-base text-xneutral-400 font-semibold font-montserrat">
+                        {{ $rector->nama }}
+                    </p>
+                    <p class="mb-[2px] text-xs sm:text-sm text-xneutral-200 font-semibold font-montserrat">
+                        {{ $rector->jabatan }}
+                    </p>
+                </div>
+            @endforeach
+        @endif
     </div>
 </section>
 <!-- END OF RECTOR SECTION -->
@@ -248,47 +213,28 @@
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                <a href=""
-                    class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                    Mahasiswa PKM-KC Alat Sensor Batuk Pasien TBC
-                </a>
-                <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                    Tingginya kasus TBC membuat mahasiswa membentuk tim Program....
-                </p>
-                <p class="text-xs font-semibold font-montserrat text-xneutral-200">
-                    20/08/24
-                </p>
-            </div>
-            <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                <a href=""
-                    class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                    Green Idul Adha Dapat Apresiasi Majelis Lingkungan
-                </a>
-                <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                    Ada yang berbeda dari hari idul Adha 1444 Hijriah saat ini karena
-                </p>
-                <p class="text-xs font-semibold font-montserrat text-xneutral-200">
-                    26/09/24
-                </p>
-            </div>
-            <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                <a href=""
-                    class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
-                    Prodi Informatika Pemenang Juara 1 Gemastik 2024
-                </a>
-                <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                    Mahasiswa informatika menang lomba Gemastik 2024 kategori Cyber
-                    Security
-                </p>
-                <p class="text-xs font-semibold font-montserrat text-xneutral-200">
-                    28/09/24
-                </p>
+                @forelse ($announcements as $announcement)
+                    <a href="{{ route('pengumuman.show', $announcement->slug) }}"
+                        class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
+                        {{ $announcement->title }}
+                    </a>
+                    <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
+                        {{ Str::limit($announcement->content, 100, '...') }}
+                    </p>
+                    <p class="text-xs font-semibold font-montserrat text-xneutral-200">
+                        {{ \Carbon\Carbon::parse($announcement->created_at)->format('d/m/y') }}
+                    </p>
+                @empty
+                    <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                        <p class="text-lg text-center text-xneutral-400 font-montserrat">No announcements available.
+                        </p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>
 </section>
 <!-- END OF ANNOUNCEMENT SECTION -->
-
 
 </body>
 
