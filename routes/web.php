@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\SambutanController;
@@ -31,4 +32,4 @@ Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pend
 
 // Route untuk detail pengumuman berdasarkan slug
 Route::get('/pengumuman/{slug}', [PengumumanController::class, 'show'])->name('pengumuman.show');
-Route::get('/berita/{slug}', [PengumumanController::class, 'show'])->name('berita.show');
+Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('berita.show');

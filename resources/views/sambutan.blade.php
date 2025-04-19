@@ -9,7 +9,7 @@
             Meraih Masa Depan dengan Semangat Kebersamaan
         </p>
 
-        @if ($greeting->isEmpty())
+        @if ($greetings->isEmpty())
             <div class="text-sm font-medium text-center text-xneutral-300 font-montserrat sm:text-base"> No Data Available
             </div>
         @else

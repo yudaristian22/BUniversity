@@ -98,7 +98,7 @@
                         <img src="{{ asset('storage/' . $abouts->image[1]) }}" alt="Illustration" />
                     @endif
                     @if (isset($abouts->image[2]))
-                        <img src="{{ asset('storage/' . $abouts->image[2]) }}" alt="Illustration" />
+                        <img class="col-span-2" src="{{ asset('storage/' . $abouts->image[2]) }}" alt="Illustration" />
                     @endif
                 </div>
                 <img class="absolute -bottom-32 -left-36 -z-10" src="/assets/images/elipse-1.svg" alt="" />
@@ -219,7 +219,7 @@
                             {{ $announcement->title }}
                         </a>
                         <p class="font-montserrat text-xs sm:text-sm font-semibold text-xneutral-200 mb-1.5">
-                            {{ Str::limit($announcement->content, 100, '...') }}
+                            {{ Str::limit(strip_tags(html_entity_decode($announcement->content)), 100, '...') }}
                         </p>
                         <p class="text-xs font-semibold font-montserrat text-xneutral-200">
                             {{ \Carbon\Carbon::parse($announcement->created_at)->format('d/m/y') }}

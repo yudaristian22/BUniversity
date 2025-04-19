@@ -15,7 +15,7 @@
                     VISI
                 </h3>
                 <p class="text-lg font-semibold text-center uppercase sm:text-xl font-montserrat text-xneutral-200">
-                    {!! $visi ? "No Data Available" !!}
+                    {!! $visi ?? 'No Data Available' !!}
                 </p>
             </div>
             <div class="space-y-3">
@@ -23,10 +23,10 @@
                     MISI
                 </h2>
                 <ol
-            class="pl-4 text-sm font-semibold text-justify list-decimal font-montserrat text-xneutral-200 sm:text-base"
-          >
-            {!! $misi ?? '"No Data Available"' !!}
-          </ol>
+                    class="pl-4 text-sm font-semibold text-justify list-decimal font-montserrat text-xneutral-200 sm:text-base">
+                    {!! str_replace(['<span style=white-space-collapse: preserve;">', '</span>'], '', $misi) ??
+                        '<li>No Data Available</li>' !!}
+                </ol>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 </p>
             </div>
             <div>
-                <img src="/assets/images/visi-2.png" alt="Inovatif" />
+                <img src="{{ asset('storage/' . $visimisiImg->image[0]) }}" alt="Inovatif" />
             </div>
             <div class="p-[30px]">
                 <h2 class="text-base font-semibold sm:text-lg text-xneutral-400 font-montserrat">
@@ -57,7 +57,7 @@
                 </p>
             </div>
             <div>
-                <img src="/assets/images/visi-1.png" alt="Profesional" />
+                <img src="{{ asset('storage/' . $visimisiImg->image[1]) }}" alt="Profesional" />
             </div>
             <div class="p-[30px]">
                 <h2 class="text-base font-semibold sm:text-lg text-xneutral-400 font-montserrat">
@@ -71,7 +71,7 @@
                 </p>
             </div>
             <div>
-                <img src="/assets/images/visi-3.png" alt="Islami" />
+                <img src="{{ asset('storage/' . $visimisiImg->image[2]) }}" alt="Islami" />
             </div>
         </div>
     </article>
