@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <!-- MAIN SECTION -->
     <article class="container mt-28">
@@ -34,8 +35,10 @@
             </script>
         @endif
 
+        <!-- Form Pendaftaran -->
         <form action="{{ route('pendaftaran.store') }}" method="post" enctype="multipart/form-data"
             class="space-y-6 mt-[70px]">
+            @csrf <!-- Tambahkan token CSRF untuk keamanan -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 md:gap-[124px] font-montserrat">
                 <div class="space-y-10">
                     <div class="flex flex-col gap-3">
@@ -62,12 +65,8 @@
                         <div class="flex items-center">
                             <select id="jalur" name="jalur" required
                                 class="border w-full peer placeholder:font-semibold appearance-none placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg">
-                                <option class="font-montserrat text-xneutral-300" value="KIP-K">
-                                    KIP-K
-                                </option>
-                                <option class="font-montserrat text-xneutral-300" value="Reguler">
-                                    Reguler
-                                </option>
+                                <option class="font-montserrat text-xneutral-300" value="KIP-K">KIP-K</option>
+                                <option class="font-montserrat text-xneutral-300" value="Reguler">Reguler</option>
                             </select>
                             <i
                                 class="-ml-8 transition-all pointer-events-none bi bi-chevron-down peer-focus:rotate-180"></i>
@@ -116,6 +115,23 @@
                             <select id="program-studi-1" name="programstudi_1" required
                                 class="border peer appearance-none w-full placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg">
                                 <option value="">Pilih Program Studi 1</option>
+                                <option value="S1 KEPERAWATAN">S1 KEPERAWATAN</option>
+                                <option value="S1 KEBIDANAN">S1 KEBIDANAN</option>
+                                <option value="S1 FARMASI">S1 FARMASI</option>
+                                <option value="S1 ADMINISTRASI RUMAH SAKIT">S1 ADMINISTRASI RUMAH SAKIT</option>
+                                <option value="D3 KEBIDANAN">D3 KEBIDANAN</option>
+                                <option value="D3 FISIOTERAPI">D3 FISIOTERAPI</option>
+                                <option value="D3 FARMASI">D3 FARMASI</option>
+                                <option value="S1 MANAJEMEN">S1 MANAJEMEN</option>
+                                <option value="S1 AKUNTANSI">S1 AKUNTANSI</option>
+                                <option value="S1 EKONOMI SYARIAH">S1 EKONOMI SYARIAH</option>
+                                <option value="S1 KEWIRAUSAHAAN">S1 KEWIRAUSAHAAN</option>
+                                <option value="S1 PENDIDIKAN GURU SD">S1 PENDIDIKAN GURU SD</option>
+                                <option value="S1 BIOLOGI">S1 BIOLOGI</option>
+                                <option value="S1 FISIKA">S1 FISIKA</option>
+                                <option value="S1 TEKNIK KOMPUTER">S1 TEKNIK KOMPUTER</option>
+                                <option value="S1 TEKNIK INDUSTRI">S1 TEKNIK INDUSTRI</option>
+                                <option value="S1 TEKNIK INFORMATIKA">S1 TEKNIK INFORMATIKA</option>
                             </select>
                             <i
                                 class="-ml-8 transition-all pointer-events-none bi bi-chevron-down peer-focus:rotate-180"></i>
@@ -130,6 +146,23 @@
                             <select id="program-studi-2" name="programstudi_2" required
                                 class="border peer appearance-none w-full placeholder:font-semibold placeholder:text-xneutral-100 border-xneutral-100 py-[18px] px-6 rounded-lg">
                                 <option value="">Pilih Program Studi 2</option>
+                                <option value="S1 KEPERAWATAN">S1 KEPERAWATAN</option>
+                                <option value="S1 KEBIDANAN">S1 KEBIDANAN</option>
+                                <option value="S1 FARMASI">S1 FARMASI</option>
+                                <option value="S1 ADMINISTRASI RUMAH SAKIT">S1 ADMINISTRASI RUMAH SAKIT</option>
+                                <option value="D3 KEBIDANAN">D3 KEBIDANAN</option>
+                                <option value="D3 FISIOTERAPI">D3 FISIOTERAPI</option>
+                                <option value="D3 FARMASI">D3 FARMASI</option>
+                                <option value="S1 MANAJEMEN">S1 MANAJEMEN</option>
+                                <option value="S1 AKUNTANSI">S1 AKUNTANSI</option>
+                                <option value="S1 EKONOMI SYARIAH">S1 EKONOMI SYARIAH</option>
+                                <option value="S1 KEWIRAUSAHAAN">S1 KEWIRAUSAHAAN</option>
+                                <option value="S1 PENDIDIKAN GURU SD">S1 PENDIDIKAN GURU SD</option>
+                                <option value="S1 BIOLOGI">S1 BIOLOGI</option>
+                                <option value="S1 FISIKA">S1 FISIKA</option>
+                                <option value="S1 TEKNIK KOMPUTER">S1 TEKNIK KOMPUTER</option>
+                                <option value="S1 TEKNIK INDUSTRI">S1 TEKNIK INDUSTRI</option>
+                                <option value="S1 TEKNIK INFORMATIKA">S1 TEKNIK INFORMATIKA</option>
                             </select>
                             <i
                                 class="-ml-8 transition-all pointer-events-none bi bi-chevron-down peer-focus:rotate-180"></i>

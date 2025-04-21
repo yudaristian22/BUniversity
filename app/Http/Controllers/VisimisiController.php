@@ -9,12 +9,12 @@ class VisimisiController extends Controller
 {
     public function index()
     {
-        $visimisi = Visimisi::all();
+        $visimisi = Visimisi::first();
 
         if ($visimisi) {
             $visi = $visimisi->visi;
             $misi = $visimisi->misi;
-            $visimisiImg = $visimisi->img;
+            $visimisiImg = $visimisi->image;
         } else {
             $visi = 'No Data Available';
             $misi = 'No Data Available';

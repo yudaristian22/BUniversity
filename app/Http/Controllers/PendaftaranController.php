@@ -20,7 +20,7 @@ class PendaftaranController extends Controller
             'email' => 'required|email|unique:students,email',
             'jalur' => 'required|string',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'namapanggilan' => 'required|int|max:255',
+            'namapanggilan' => 'required|string|max:255',
             'nomor_hp' => 'required|string|max:15',
             'programstudi_1' => 'required|string',
             'programstudi_2' => 'nullable|string',
@@ -33,7 +33,7 @@ class PendaftaranController extends Controller
             $fotoName = time() . '.' . $request->file('image')->getClientOriginalName();
 
             // Simpan file di strorage dengan path yang tepat
-            $path = $request->file('image')->storeAs('uploads/students', $fotoName, 'public');
+            $path = $request->file('image')->storeAs('', $fotoName, 'public');
 
             // Debugging cek apakah file disimpan
             if (!$path) {

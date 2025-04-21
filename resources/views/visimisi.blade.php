@@ -24,8 +24,7 @@
                 </h2>
                 <ol
                     class="pl-4 text-sm font-semibold text-justify list-decimal font-montserrat text-xneutral-200 sm:text-base">
-                    {!! str_replace(['<span style=white-space-collapse: preserve;">', '</span>'], '', $misi) ??
-                        '<li>No Data Available</li>' !!}
+                    {!! $misi ?? 'No Data Available' !!}
                 </ol>
             </div>
         </div>
@@ -43,7 +42,11 @@
                 </p>
             </div>
             <div>
-                <img src="{{ asset('storage/' . $visimisiImg->image[0]) }}" alt="Inovatif" />
+                @if (isset($visimisiImg[0]))
+                    <img src="{{ asset('storage/' . $visimisiImg[0]) }}" alt="Inovatif" />
+                @else
+                    <p>No Image Available</p>
+                @endif
             </div>
             <div class="p-[30px]">
                 <h2 class="text-base font-semibold sm:text-lg text-xneutral-400 font-montserrat">
@@ -57,7 +60,11 @@
                 </p>
             </div>
             <div>
-                <img src="{{ asset('storage/' . $visimisiImg->image[1]) }}" alt="Profesional" />
+                @if (isset($visimisiImg[0]))
+                    <img src="{{ asset('storage/' . $visimisiImg[1]) }}" alt="Profesional" />
+                @else
+                    <p>No Image Available</p>
+                @endif
             </div>
             <div class="p-[30px]">
                 <h2 class="text-base font-semibold sm:text-lg text-xneutral-400 font-montserrat">
@@ -71,8 +78,53 @@
                 </p>
             </div>
             <div>
-                <img src="{{ asset('storage/' . $visimisiImg->image[2]) }}" alt="Islami" />
+                @if (isset($visimisiImg[0]))
+                    <img src="{{ asset('storage/' . $visimisiImg[2]) }}" alt="Islami" />
+                @else
+                    <p>No Image Available</p>
+                @endif
             </div>
         </div>
+        <style>
+            /* Gaya untuk heading */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: 'Montserrat', sans-serif;
+                color: #333;
+                /* Warna teks */
+                font-weight: bold;
+                /* Ketebalan teks */
+            }
+
+            /* Gaya untuk numbering dan bullet list */
+            ul {
+                list-style-type: disc;
+                /* Jenis bullet list */
+                padding-left: 20px;
+                /* Jarak dari kiri */
+                marbin-bottom: 1em;
+            }
+
+            ol {
+                list-style-type: decimal;
+                /* Jenis numbering list */
+                padding-left: 20px;
+                /* Jarak dari kiri */
+                margin-bottom: 1em;
+            }
+
+            li {
+                margin-bottom: 0.5em;
+            }
+
+            p {
+                margin-bottom: 1em;
+                color: #555
+            }
+        </style>
     </article>
 @endsection
