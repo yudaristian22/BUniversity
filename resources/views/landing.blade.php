@@ -131,11 +131,11 @@
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
-                @if ($news->isEmpty())
-                    <p class="text-lg text-center text-xneutral-200 font-montserrat">No news available.</p>
-                @else
-                    @foreach ($news as $newslist)
+            @if ($news->isEmpty())
+                <p class="text-lg text-center text-xneutral-200 font-montserrat">No news available.</p>
+            @else
+                @foreach ($news as $newslist)
+                    <div class="p-[14px] rounded-[20px] border border-xneutral-100 bg-xneutral-0">
                         <div class="max-h-[214px] rounded-2xl overflow-hidden mb-5">
                             <img src="{{ asset('storage/' . $newslist->image) }}" alt="{{ $newslist->title }}" />
                         </div>
@@ -146,9 +146,9 @@
                         <p class="text-xs font-semibold font-montserrat sm:text-sm text-xneutral-200">
                             {{ \Carbon\Carbon::parse($newslist->created_at)->format('d/m/y') }}
                         </p>
-                    @endforeach
-                @endif
-            </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
         <div class="absolute top-12 -left-24 -z-10">
             <img src="/assets/images/elipse-1.svg" alt="" />
@@ -212,8 +212,8 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-                <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                    @forelse ($announcements as $announcement)
+                @forelse ($announcements as $announcement)
+                    <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
                         <a href="{{ route('pengumuman.show', $announcement->slug) }}"
                             class="mb-4 text-base font-semibold sm:text-lg font-montserrat text-xneutral-400 line-clamp-2">
                             {{ $announcement->title }}
@@ -224,13 +224,13 @@
                         <p class="text-xs font-semibold font-montserrat text-xneutral-200">
                             {{ \Carbon\Carbon::parse($announcement->created_at)->format('d/m/y') }}
                         </p>
-                    @empty
-                        <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
-                            <p class="text-lg text-center text-xneutral-400 font-montserrat">No announcements available.
-                            </p>
-                        </div>
-                    @endforelse
-                </div>
+                    </div>
+                @empty
+                    <div class="py-[26px] px-7 rounded-[20px] border border-xneutral-100 bg-white">
+                        <p class="text-lg text-center text-xneutral-400 font-montserrat">No announcements available.
+                        </p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
